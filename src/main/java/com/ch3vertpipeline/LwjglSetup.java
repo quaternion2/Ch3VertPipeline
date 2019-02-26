@@ -111,11 +111,10 @@ public class LwjglSetup {
         while (!glfwWindowShouldClose(window)) {
             double curTime = System.currentTimeMillis() / 1000.0;
             double slowerTime = curTime;//assigned direcly but I was applying a factor here
-//            final float colour[] = {
-//                (float) Math.sin(slowerTime) * 0.5f + 0.5f,
-//                (float) Math.cos(slowerTime) * 0.5f + 0.5f,
-//                0.0f, 1.0f};
-            final float colour[] = {0.0f, 0.0f, 0.0f, 1.0f};
+            final float colour[] = {
+                (float) Math.sin(slowerTime) * 0.5f + 0.5f,
+                (float) Math.cos(slowerTime) * 0.5f + 0.5f,
+                0.0f, 1.0f};
 
             glClearBufferfv(GL_COLOR, 0, colour);
 
@@ -128,10 +127,9 @@ public class LwjglSetup {
 
             //glPatchParameteri(GL_PATCH_VERTICES, 3);//this is the default so is unneeded
             glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-            glDrawArrays(GL_TRIANGLES, 0, 3);
-            //glPointSize(5.0f);
-            //glDrawArrays(GL_PATCHES, 0, 3);
             glVertexAttrib4fv(0, attrib);
+            glDrawArrays(GL_TRIANGLES, 0, 3);
+            
             
             glfwSwapBuffers(window); // swap the color buffers
             glfwPollEvents();
@@ -204,8 +202,8 @@ public class LwjglSetup {
         program = glCreateProgram();
         glAttachShader(program, vertex_shader);
         glAttachShader(program, fragment_shader);
-        glAttachShader(program, tess_control_shader);
-        glAttachShader(program, tess_evaluation_shader);
+        //glAttachShader(program, tess_control_shader);
+        //glAttachShader(program, tess_evaluation_shader);
 
         glLinkProgram(program);
         //check link       
